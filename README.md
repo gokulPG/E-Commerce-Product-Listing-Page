@@ -23,7 +23,7 @@ Visit http://localhost:3000.
 
 - URL search params: Filter/sort/page state. The source of truth for "what view is the user looking at" — shareable, back-button-safe, refresh-safe, with zero custom sync code.
 
-- Zustand + persistClient stateFavorites — genuinely client-owned, needs to survive a page reload, needed in distant components.
+- Zustand + persistClient state - Favorites — genuinely client-owned, needs to survive a page reload, needed in distant components.
 - ZodValidationOne schema generates both the Product TypeScript type and runtime validation, so they can never drift apart.
 - CSS Modules Styling Scoped, plain CSS per component — no utility-class framework, kept intentionally simple.
 
