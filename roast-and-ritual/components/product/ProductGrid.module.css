@@ -1,0 +1,40 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+.message {
+  padding: 40px 16px;
+  text-align: center;
+  color: var(--color-bark);
+}
+
+.errorMessage {
+  padding: 40px 16px;
+  text-align: center;
+  color: var(--color-clay);
+}
+
+.retryButton {
+  margin-top: 12px;
+  background: var(--color-roast);
+  color: var(--color-paper);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.resetButton {
+  margin-top: 12px;
+  background: transparent;
+  color: var(--color-roast);
+  border: 1px solid var(--color-roast);
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+}

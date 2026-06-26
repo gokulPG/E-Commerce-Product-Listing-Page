@@ -1,0 +1,22 @@
+.list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.button {
+  padding: 6px 14px;
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  background: var(--color-paper);
+  color: var(--color-bark);
+  font-family: var(--font-body);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.buttonActive {
+  background: var(--color-roast);
+  border-color: var(--color-roast);
+  color: var(--color-paper);
+}
