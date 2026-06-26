@@ -6,8 +6,11 @@ I picked a concrete product domain (coffee) instead of a generic placeholder cat
 
 
 Quick start
+
 cd roast-and-ritual
+
 npm install
+
 npm run dev
 
 Visit http://localhost:3000.
