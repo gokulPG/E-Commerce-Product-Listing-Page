@@ -1,26 +1,41 @@
-@import "tailwindcss";
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --color-espresso: #1b1410;     /* near-black warm base — text, header bg */
+  --color-paper: #faf6f0;        /* unbleached paper — page background */
+  --color-paper-dim: #f0e9df;    /* slightly recessed surface (cards, inputs) */
+  --color-roast: #c4501a;        /* burnt-orange accent — used sparingly */
+  --color-roast-dim: #e8a87c;    /* lighter accent tint — hover/active bg */
+  --color-bark: #6b5544;         /* mid-roast brown — secondary text */
+  --color-moss: #3a6b4c;         /* muted moss green — in-stock / success ONLY */
+  --color-moss-dim: #e3ece6;     /* moss tint for success backgrounds */
+  --color-clay: #b54a3f;         /* muted red — error / out-of-stock */
+  --color-clay-dim: #f3e3e0;     /* clay tint for error backgrounds */
+  --color-line: #e2d8cb;         /* borders/dividers — warm grey, never pure black */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-display: sans-serif;
+  --font-body: sans-serif;
+  --font-mono: monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-espresso);
+  font-family: var(--font-body);
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-roast);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
