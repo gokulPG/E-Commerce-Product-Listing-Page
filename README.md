@@ -5,6 +5,8 @@ A specialty coffee & home-brew equipment storefront.
 I picked a concrete product domain (coffee) instead of a generic placeholder catalog so that filters, copy, and design decisions had real substance behind them, rather than being arbitrary.
 
 
+HLD: https://github.com/gokulPG/E-Commerce-Product-Listing-Page/blob/main/HLD.md
+
 (0) Quick start
 
 cd roast-and-ritual
