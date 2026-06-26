@@ -51,12 +51,13 @@ export function ProductGrid({
 
   return (
     <div className={styles.grid}>
-      {products.map((product) => (
+      {products.map((product, index) => (
         <ProductCard
           key={product.id}
           product={product}
           isFavorited={favoriteIds.has(product.id)}
           onToggleFavorite={onToggleFavorite}
+          priority={index < 4}
         />
       ))}
     </div>

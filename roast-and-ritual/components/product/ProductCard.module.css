@@ -3,7 +3,12 @@
   border-radius: 8px;
   overflow: hidden;
   background: var(--color-paper-dim);
-  transition: box-shadow 0.15s ease;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.cardFavorited {
+  border: 2px solid var(--color-roast);
+  box-shadow: 0 2px 10px rgba(196, 80, 26, 0.15);
 }
 
 .card:hover {

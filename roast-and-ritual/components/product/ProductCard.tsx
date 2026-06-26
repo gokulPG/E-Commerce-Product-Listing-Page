@@ -7,17 +7,25 @@ type ProductCardProps = {
   product: Product;
   isFavorited: boolean;
   onToggleFavorite: (id: string) => void;
+  priority?: boolean;
 };
 
 export function ProductCard({
-  product,
+   product,
   isFavorited,
   onToggleFavorite,
+  priority = false,
 }: ProductCardProps) {
   const displayPrice = `₹${product.price.toLocaleString("en-IN")}`;
 
   return (
-    <div className={clsx(styles.card, !product.inStock && styles.outOfStock)}>
+    <div
+      className={clsx(
+        styles.card,
+        !product.inStock && styles.outOfStock,
+        isFavorited && styles.cardFavorited
+      )}
+    >
       <div className={styles.imageWrapper}>
         <Image
           src={product.images[0].url}
@@ -25,6 +33,7 @@ export function ProductCard({
           fill
           className={styles.image}
           sizes="(max-width: 600px) 100vw, 25vw"
+          priority={priority}
         />
         <button
           onClick={() => onToggleFavorite(product.id)}

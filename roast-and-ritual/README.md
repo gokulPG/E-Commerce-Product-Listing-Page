@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Roast & Ritual — Ecommerce Product Listing Page
 
-## Getting Started
+A specialty coffee & home-brew equipment storefront.
 
-First, run the development server:
+I picked a concrete product domain (coffee) instead of a generic placeholder catalog so that filters, copy, and design decisions had real substance behind them, rather than being arbitrary.
 
-```bash
+
+Quick start
+
+bashnpm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To verify the production build (this project deliberately exercises Next.js's static/dynamic rendering split — see "Things I had to debug" below):
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+bashnpm run build
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+Stack, and why each piece is here
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+ToolRoleWhy this oneNext.js (App Router)FrameworkChosen specifically for SEO — Server Components let the page shell render without waiting on client JS, and real paginated URLs keep listings crawlable.TypeScriptLanguageNon-negotiable for a senior submission — catches whole classes of bugs before runtime.TanStack QueryServer stateFetching, caching, loading/error/retry semantics for the product API, without hand-rolling any of it.URL search paramsFilter/sort/page stateThe source of truth for "what view is the user looking at" — shareable, back-button-safe, refresh-safe, with zero custom sync code.Zustand + persistClient stateFavorites — genuinely client-owned, needs to survive a page reload, needed in distant components.ZodValidationOne schema generates both the Product TypeScript type and runtime validation, so they can never drift apart.CSS ModulesStylingScoped, plain CSS per component — no utility-class framework, kept intentionally simple to learn alongside everything else.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+The core architectural decision: three kinds of state, one tool each
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Most state-management problems come from treating all state the same way. This project deliberately splits state into three categories, each owned by the tool actually designed for it:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+StateToolWhyProduct data (fetched from a server)TanStack QueryHas its own lifecycle — loading, caching, staleness, retries — that a plain state library doesn't model.Filters, sort, current pageURL search paramsDefines "what is the user looking at right now" — should be shareable and survive a refresh.FavoritesZustand + persistClient-owned, needs to persist to localStorage, needed in distant components (any product card, anywhere).
+
+This isn't just a design choice on paper — it's demonstrated live in the app:
+
+
+Editing the URL by hand (e.g. ?category=brewers&sort=price_desc) correctly filters and sorts with zero component code involved.
+The browser's back button correctly restores the previous filter state, because it's real browser history, not custom state.
+Favoriting a product and then hard-refreshing the page keeps it favorited, because Zustand's persist middleware wrote it to localStorage.
+
+
+Why not Redux? Redux Toolkit is excellent for large, deeply interconnected client state shared across many features. This app's actual client state (favorites + a couple of UI toggles) is small and shallow, and its server state needed a different kind of tool entirely — one built around caching and staleness, not actions and reducers. I'd reach for Redux if this grew into something with many interacting client-only features, like a multi-step checkout wizard with cross-step validation.

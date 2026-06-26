@@ -11,9 +11,9 @@
   --color-clay-dim: #f3e3e0;     /* clay tint for error backgrounds */
   --color-line: #e2d8cb;         /* borders/dividers — warm grey, never pure black */
 
-  --font-display: sans-serif;
-  --font-body: sans-serif;
-  --font-mono: monospace;
+  --font-display: "Fjalla One", sans-serif;
+  --font-body: "Karla", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
 }
 
 body {

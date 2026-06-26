@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 24px 16px 40px;
+}
+
+.button {
+  background: var(--color-roast);
+  color: var(--color-paper);
+  border: none;
+  border-radius: 6px;
+  padding: 10px 24px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.button:disabled {
+  background: var(--color-roast-dim);
+  cursor: not-allowed;
+}
