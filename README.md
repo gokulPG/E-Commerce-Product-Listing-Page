@@ -15,7 +15,7 @@ npm install
 
 npm run dev
 
-Visit http://localhost:3000.
+Visit https://e-commerce-product-listing-page-5f1.vercel.app/.
 
 (1) Stack:
 
